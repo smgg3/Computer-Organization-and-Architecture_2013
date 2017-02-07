@@ -1,0 +1,25 @@
+ org 100h  
+include 'emu8086.inc'
+
+.data
+array db 4,3,7,1
+
+.code
+lea si,array
+mov al,[si]
+mov cx,04
+st: 
+inc si
+cmp al,[si]
+jl lesser
+jg greater
+lesser:
+mov al,[si] 
+loop st
+greater:
+nop
+loop st
+call print_num
+ret    
+DEFINE_PRINT_NUM
+DEFINE_PRINT_NUM_UNS

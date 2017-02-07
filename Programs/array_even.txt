@@ -1,0 +1,47 @@
+include 'emu8086.inc'
+org 100h
+.data
+a db 4,3,2,7
+c db 2
+array db ?
+.code
+ mov ax,@data
+ mov ds,ax
+lea si,a
+lea di,array
+mov cx,4
+and ah,00h
+st:
+mov al,[si]
+div c
+cmp ah,0
+je even  
+and ah,00h
+inc si
+loop st
+cmp cx,0
+je next
+even:
+mov al,[si]
+mov [di],al
+inc di
+inc si
+loop st
+next:
+lea si,array
+dec di
+print 'even numbers in array are:'
+ii:
+mov al,[si] 
+call print_num
+print ' '
+inc si
+cmp si,di
+jg last
+jmp ii
+last:
+nop
+ret
+DEFINE_PRINT_NUM
+DEFINE_PRINT_NUM_UNS
+END

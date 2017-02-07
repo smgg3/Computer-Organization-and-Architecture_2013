@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=emu8086
+Exec=env WINEPREFIX="/home/RGUKT/.wine" wine C:\\\\emu8086\\\\emu8086.exe 
+Type=Application
+StartupNotify=true
+Path=/home/RGUKT/.wine/dosdevices/c:/emu8086

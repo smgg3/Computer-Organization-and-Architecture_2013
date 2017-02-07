@@ -1,0 +1,9 @@
+1. Adding n numbers
+2. max min from an array 
+3. factorial 
+4. lcm
+
+5. Binary to BCD converter
+6. Given number in an array is even or odd
+7. String polindrome
+8. Sorting array in ascending/descending

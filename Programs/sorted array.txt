@@ -1,0 +1,65 @@
+org 100h
+include 'emu8086.inc'
+
+.data 
+
+array db 5,3,7,2,1
+i dw 5
+
+.code
+start:
+mov ax,@data
+mov ds,ax
+lea si,array
+mov di,si 
+mov cx,05
+mov dx,cx
+and ah,00h
+
+il:  
+cmp cx,1
+je stop
+mov al, [di]
+mov bl,[si+1]
+cmp al,bl
+jg swap  
+jl next
+swap:  
+mov [si+1],al
+mov [di],bl
+inc si
+loop il
+next:
+inc si
+loop il
+stop:
+inc di
+mov si,di
+mov cx,dx
+dec cx 
+mov dx,cx
+cmp cx,1 
+je stop1
+jmp il
+
+stop1:
+nop
+
+lea si,array
+ll:
+mov al,[si]
+inc si    
+call print_num
+cmp si,di                  
+jg ee
+jmp ll
+ee:
+nop
+ret
+DEFINE_PRINT_NUM  
+DEFINE_PRINT_NUM_UNS 
+END
+
+
+
+

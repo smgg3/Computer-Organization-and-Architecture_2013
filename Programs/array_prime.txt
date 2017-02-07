@@ -1,0 +1,61 @@
+include 'emu8086.inc'
+org 100h
+
+.data
+a db 5,4,8,3
+c db 2 
+array db ?
+.code
+mov ax,@data
+mov ds,ax
+lea si,a  
+lea di,array
+mov bx,si
+mov cx,04 
+and ah,00h
+lop:
+mov al,[si]
+div c
+mov bl,al
+prime:
+   mov al,[si]
+   and ah,00h
+   div bl
+    cmp bl,1
+    jz pri
+   dec bl
+   
+   cmp ah,0
+   jz np      
+   jnz prime
+
+np:
+    inc si
+    loop lop
+    
+   
+pri:  
+    mov al,[si]
+    mov [di],al
+    inc di
+    inc si
+    loop lop    
+ 
+lea si,array 
+PRINT 'THE PRIME NUMBERS ARE:'
+
+printprime:
+mov al,[si]   
+inc si
+call print_num 
+print ' '
+cmp si, di
+jg last
+jl printprime 
+    
+last:
+ret
+DEFINE_PRINT_NUM
+DEFINE_PRINT_NUM_UNS
+end
+    

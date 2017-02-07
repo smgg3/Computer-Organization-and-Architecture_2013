@@ -1,0 +1,16 @@
+include 'emu8086.inc'
+org 100h
+.code
+print 'enter number:'
+call scan_num
+mov al,1
+st:
+mul cx
+loop st
+print 'factorial of given number is:'
+call print_num
+ret            
+DEFINE_SCAN_NUM
+DEFINE_PRINT_NUM
+DEFINE_PRINT_NUM_UNS
+END
